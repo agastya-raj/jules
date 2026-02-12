@@ -37,4 +37,20 @@ describe('Jules MCP Server', () => {
     const parsedResult = JSON.parse(result.content![0].text as string) as ParsedResult;
     expect(parsedResult.stdout).toBe('success');
   });
+
+  it('should return helpful error message if jules is not found', async () => {
+    const repo_name = 'test-repo';
+    const user_task_description = 'test task';
+
+    mockExecFile.mockImplementation((command, args, options, callback) => {
+      const error: any = new Error('spawn jules ENOENT');
+      error.code = 'ENOENT';
+      callback(error, '', '');
+    });
+
+    const result = await startNewJulesTask({ repo_name, user_task_description }, { execFile: mockExecFile as any });
+
+    const parsedResult = JSON.parse(result.content![0].text as string) as ParsedResult;
+    expect(parsedResult.error).toBe('Jules CLI not found. Please install it globally using `npm install -g @google/jules`.');
+  });
 });

@@ -30,6 +30,18 @@ export async function startNewJulesTask(
   return new Promise((resolve) => {
     dependencies.execFile('jules', ['remote', 'new', '--repo', repo_name, '--session', user_task_description], { encoding: 'utf8' }, (error: ExecFileException | null, stdout: string, stderr: string) => {
       if (error) {
+        if (error.code === 'ENOENT') {
+          resolve({
+            content: [
+              {
+                type: 'text',
+                text: JSON.stringify({ error: 'Jules CLI not found. Please install it globally using `npm install -g @google/jules`.' }),
+              },
+            ],
+          });
+          return;
+        }
+
         resolve({
           content: [
             {
