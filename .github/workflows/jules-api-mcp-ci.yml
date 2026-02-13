@@ -1,0 +1,39 @@
+name: Jules API MCP CI
+
+on:
+  push:
+    paths:
+      - 'jules-api-mcp/**'
+      - '.github/workflows/jules-api-mcp-ci.yml'
+  pull_request:
+    paths:
+      - 'jules-api-mcp/**'
+      - '.github/workflows/jules-api-mcp-ci.yml'
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: jules-api-mcp
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Unit tests
+        run: npm test

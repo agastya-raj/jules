@@ -2,6 +2,9 @@
 
 Jules extension for Gemini CLI lets you delegate coding tasks to the [Jules](https://jules.google/) asynchronous agent. This allows you to offload work and track its progress without blocking your terminal.
 
+> [!NOTE]
+> This repository now also includes `jules-api-mcp/`, a standalone MCP server that integrates directly with the Jules REST API for clients like Codex and OpenCode.
+
 Some examples of tasks you can assign to Jules are:
 * Bug fixing
 * Code refactoring
