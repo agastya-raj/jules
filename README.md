@@ -57,6 +57,10 @@ For example:
 - [Gemini CLI extensions](https://github.com/google-gemini/gemini-cli/blob/main/docs/extensions/index.md): Documentation about using extensions in Gemini CLI
 - [GitHub issues](https://github.com/gemini-cli-extensions/jules/issues): Report bugs or request features
 
+## Other Tools
+
+The Jules MCP server can also be used with other MCP-compatible tools like Claude Code, OpenCode, and Codex CLI. See [mcp-server/README.md](mcp-server/README.md) for configuration instructions.
+
 ## Legal
 
 - License: [Apache License 2.0](https://github.com/gemini-cli-extensions/jules/blob/main/LICENSE)
